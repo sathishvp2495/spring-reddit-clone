@@ -1,5 +1,6 @@
 package com.example.springredditclone.controller;
 
+import com.example.springredditclone.dto.LoginRequest;
 import com.example.springredditclone.dto.RegisterRequest;
 import com.example.springredditclone.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,10 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token){
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully",OK);
+    }
+
+    @PostMapping("/login")
+    public void login(@ResponseBody LoginRequest loginRequest){
 
     }
 
