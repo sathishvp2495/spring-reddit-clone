@@ -1,5 +1,6 @@
 package com.example.springredditclone.service;
 
+import com.example.springredditclone.exceptions.SpringRedditException;
 import com.example.springredditclone.model.User;
 import com.example.springredditclone.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         Optional<User> userOptional = userRepository.findByUsername(username);
-        User user = userOptional.orElseThrow(()-> new UsernameNotFoundException("No user found with username : "+username));
+        User user = userOptional.orElseThrow(()-> new SpringRedditException("No user found with username : "+username));
 
         return new org.springframework.security.
                 core.userdetails.User(user.getUsername(),user.getPassword(),
